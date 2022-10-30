@@ -1,0 +1,8 @@
+[
+    {"name": "Unknown", "image": "unknown"},
+    {"name": "PCVR", "image": "vr"},
+    {"name": "Screen Mode", "image": "screen"},
+    {"name": "Mobile", "image": "mobile"},
+    {"name": "Quest 1", "image": "vr"},
+    {"name": "Quest 2", "image": "vr"}
+]
