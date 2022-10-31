@@ -35,3 +35,10 @@ If you do decide to use an alt account, please input your alt account's username
 
 Make sure you have Discord running in the background and run the `main.py` script!
 `python main.py`
+
+## Contributing
+If you'd like, you can add yours or others rooms on the [supported room JSON](https://github.com/Jegarde/RecRoomDiscordRPC/blob/master/supported_rooms.json)!
+
+It lets you have unique pre-game and in progress statuses for each room.
+
+Make sure you format it correctly!
