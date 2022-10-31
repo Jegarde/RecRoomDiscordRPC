@@ -1,0 +1,127 @@
+{
+    "^TheRiseofJumbotron":
+        {
+            "pre_game": "Waiting for teammates",
+            "in_progress": "Vanquishing Jumbotron"
+        },
+    "^GoldenTrophy":
+        {
+            "pre_game": "Waiting for teammates",
+            "in_progress": "Vanquishing Goblin King"
+        },
+    "^CrimsonCauldron":
+        {
+            "pre_game": "Waiting for teammates",
+            "in_progress": "Vanquishing Witch"
+        },
+    "^IsleOfLostSkulls":
+        {
+            "pre_game": "Waiting for teammates",
+            "in_progress": "Vanquishing Ghost Beard"
+        },
+    "^Crescendo":
+        {
+            "pre_game": "Waiting for teammates",
+            "in_progress": "Vanquishing Dracula"
+        },
+    "^Paintball":
+        {
+            "pre_game": "Waiting for players",
+            "in_progress": "Tagging players"
+        },
+    "^PaintballVR":
+        {
+            "pre_game": "Waiting for players",
+            "in_progress": "Tagging players"
+        },
+    "^RecRoyaleSquads":
+        {
+            "pre_game": "Waiting for teammates",
+            "in_progress": "Looting and shooting"
+        },
+    "^RecRoyaleSolos":
+        {
+            "pre_game": "Waiting for players",
+            "in_progress": "Looting and shooting"
+        },
+    "^Showdown":
+        {
+            "pre_game": "Waiting for partners",
+            "in_progress": "Rootin' and tootin'"
+        },
+    "^Dodgeball":
+        {
+            "pre_game": "Waiting for players",
+            "in_progress": "Catching dodgeballs"
+        },
+    "^DodgeballVR":
+        {
+            "pre_game": "Waiting for players",
+            "in_progress": "Catching dodgeballs"
+        },
+    "^Paddleball":
+        {
+            "pre_game": "Waiting for a player",
+            "in_progress": "Paddling balls"
+        },
+    "^StuntRunner":
+        {
+            "pre_game": "Waiting for players",
+            "in_progress": "Outrunning everyone"
+        },
+    "^Soccer":
+        {
+            "pre_game": "Waiting for players",
+            "in_progress": "Scoring goals"
+        },
+    "^Bowling":
+        {
+            "pre_game": "Waiting for players",
+            "in_progress": "Striking pins"
+        },
+    "^DiscGolfLake":
+        {
+            "pre_game": "Waiting for players",
+            "in_progress": "Putting discs"
+        },
+    "^DiscGolfPropulsion":
+        {
+            "pre_game": "Waiting for players",
+            "in_progress": "Putting discs"
+        },
+    "^RecRally":
+        {
+            "pre_game": "Waiting for racers",
+            "in_progress": "Rallying hard"
+        },
+    "^Orientation":
+        {
+            "pre_game": "Learning the ropes",
+            "in_progress": "Learning the ropes"
+        },
+    "^Legacy3DCharades":
+        {
+            "pre_game": "Waiting for players",
+            "in_progress": "Guessing phrases"
+        },
+    "^3DCharades":
+        {
+            "pre_game": "Waiting for players",
+            "in_progress": "Guessing phrases"
+        },
+    "^Lounge":
+        {
+            "pre_game": "Hanging out",
+            "in_progress": "Hanging out"
+        },
+    "^RecCenter":
+        {
+            "pre_game": "Hanging out",
+            "in_progress": "Hanging out"
+        },
+    "^Park":
+        {
+            "pre_game": "Hanging out",
+            "in_progress": "Hanging out"
+        }
+}

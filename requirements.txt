@@ -1,3 +1,5 @@
 nest-asyncio==1.5.6
-recnetlogin==0.0.2
+recnetlogin==0.0.4
 recnetpy==0.1.38
+python-dotenv==0.21.0 
+pypresence==4.2.1
