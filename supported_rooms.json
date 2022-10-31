@@ -21,7 +21,7 @@
     },
     "^CrimsonCauldron": {
         "pre_game": "Waiting for teammates",
-        "in_progress": "Vanquishing Witch"
+        "in_progress": "Vanquishing the Witch"
     },
     "^IsleOfLostSkulls": {
         "pre_game": "Waiting for teammates",
