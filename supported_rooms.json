@@ -1,4 +1,16 @@
 {
+    "Dorm Room": {
+        "pre_game": "Chilling out",
+        "in_progress": "Chilling out"
+    },
+    "Private Room": {
+        "pre_game": "Creating a room",
+        "in_progress": "Creating a room"
+    },
+    "Login Menu": {
+        "pre_game": "Choosing an account",
+        "in_progress": "Choosing an account"
+    },
     "^TheRiseofJumbotron": {
         "pre_game": "Waiting for teammates",
         "in_progress": "Vanquishing Jumbotron"

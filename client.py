@@ -136,7 +136,7 @@ class RecRoomRPC:
         if old_instance is None:
             old_instance = {}
             
-        if self.old_matchmaking and old_instance.get("roomInstanceId") == instance.get("roomInstanceId"):
+        if self.old_matchmaking and old_instance.get("roomInstanceId") == instance.get("roomInstanceId") and old_instance.get("isInProgress") == instance.get("isInProgress") and old_instance.get("isFull") == instance.get("isFull"):
             return (PresenceReturnValue.SAME, None)
         
         # For comparsion on the next update to see if updating is needed
@@ -151,6 +151,7 @@ class RecRoomRPC:
             if not raw_room_name.startswith("^"):
                 # Dorm room
                 state = raw_room_name
+                raw_room_name = "Dorm Room"
                 room_image = img_url("70rpp90levsypggpzn6c4xqqs.jpg")
                 
             else:
@@ -172,7 +173,8 @@ class RecRoomRPC:
                         
                 else:
                     # A Private room
-                    state = "Private Room"
+                    raw_room_name = "Private Room"
+                    state = raw_room_name
                     room_image = img_url("DefaultRoomImage.jpg")
                 
             if instance["isFull"]:
@@ -180,7 +182,8 @@ class RecRoomRPC:
 
             
         else:
-            state = "Login Menu"
+            raw_room_name = "Login Menu"
+            state = raw_room_name
             room_image = img_url("DefaultRoomImage.jpg")
         
         # Get platform

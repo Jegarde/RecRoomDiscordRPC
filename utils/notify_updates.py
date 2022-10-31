@@ -15,8 +15,8 @@ def notify_latest_update() -> str:
     resp = httpx.get(GitHubLinks.VERSION)
     if resp.status_code == 200:
         latest_versions_json = resp.json()
-        if version not in latest_versions_json:
-            latest_version = list(latest_version)[-1]
+        if version not in latest_versions_json and len(latest_versions_json) > len(versions):
+            latest_version = list(latest_versions_json)[-1]
             print(f"A new update is available! {version} > {latest_version}")
             print(f"Download at {GitHubLinks.REPO}")
             

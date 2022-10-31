@@ -2,5 +2,12 @@
     "0.0.1": {
         "title": "Initial launch!",
         "feature_list": []
+    },
+    "0.0.2": {
+        "title": "Bug and stability fixes",
+        "feature_list": [
+            "Always load supported rooms from GitHub",
+            "Fix RPC not updating when a instance gets full or a game starts or ends"
+        ]
     }
 }
