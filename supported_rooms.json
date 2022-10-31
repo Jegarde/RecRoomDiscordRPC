@@ -31,6 +31,10 @@
         "pre_game": "Waiting for teammates",
         "in_progress": "Vanquishing Dracula"
     },
+    "^LaserTag": {
+        "pre_game": "Waiting for players",
+        "in_progress": "Tagging players and bots"
+    },
     "^Paintball": {
         "pre_game": "Waiting for players",
         "in_progress": "Tagging players"
