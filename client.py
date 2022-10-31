@@ -10,8 +10,9 @@ from recnetpy.rest import Response
 from recnetlogin import RecNetLoginAsync
 from recnetlogin.exceptions import InvalidAccountCredentials, Lockout
 from pypresence import Presence
+from pypresence.exceptions import DiscordNotFound
 from typing import Optional, Tuple
-from utils import img_url, room_url, profile_url
+from utils import img_url, room_url, profile_url, load_platforms, load_supported_rooms
 
 nest_asyncio.apply()
 
@@ -29,16 +30,13 @@ class RecRoomRPC:
         # Who to track for the RPC
         self.track_username = track_username if track_username else self.username
         
-        self.RPC = Presence(self.client_id)
+        self.RPC: Presence = None
         self.rec_net: recnetpy.Client = None
         self.rec_login: RecNetLoginAsync  = None
         self.account: Account = None
             
-        with open("platforms.json", "r") as platforms_json:
-            self.platforms = json.load(platforms_json)
-            
-        with open("supported_rooms.json", "r") as supported_json:
-            self.supported_rooms = json.load(supported_json)
+        self.platforms = {}
+        self.supported_rooms = {}
         
         self.old_matchmaking: Optional[MatchmakingResponse] = {}
         self.delay = delay
@@ -49,10 +47,32 @@ class RecRoomRPC:
         Initialize all modules and start the integration
         """
         
+        # Connect to Discord
+        try:
+            self.RPC = Presence(self.client_id)
+        except DiscordNotFound:
+            print("Please have Discord running in the background!")
+            return
+        self.RPC.connect()
+        
+        # Load platforms and supported rooms
+        self.platforms = load_platforms()
+        if not self.platforms:
+            print("Couldn't find platforms file and was unable to reinstall! Please reinstall.")
+            return
+        
+        self.supported_rooms = load_supported_rooms()
+        if not self.supported_rooms:
+            print("Couldn't find platforms file and was unable to reinstall! Please reinstall.")
+            return
+        
         # Initialize RecNetPy and check if specified account exists
         self.rec_net = recnetpy.Client()
         self.account = await self.rec_net.accounts.get(self.track_username)
-        assert self.account, "Account not found!"
+        if not self.account:
+            print(f"Account named @{self.track_username} doesn't exist!")
+            await self.stop()
+            return
         
         self.debug_print("Found account...")
         
@@ -75,11 +95,6 @@ class RecRoomRPC:
         
         self.debug_print("Initialized RecNetLogin...")
         
-        # Connect to Discord
-        self.RPC.connect()
-        
-        self.debug_print("Connected to RPC...")
-        
         print("Successfully connected to Rec Room and Discord!")
         
         while True:
@@ -87,9 +102,13 @@ class RecRoomRPC:
             await self.update()
             await asyncio.sleep(self.delay)
             
-            
     async def stop(self) -> None:
-        await self.rec_net.close()
+        """
+        Closes the instance
+        """
+        
+        if self.rec_net: await self.rec_net.close()
+        if self.rec_login: await self.rec_login.close()
         
     async def get_presence(self) -> Tuple[PresenceReturnValue, Optional[dict]]:
         """
