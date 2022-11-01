@@ -9,5 +9,13 @@
             "Always load supported rooms from GitHub",
             "Fix RPC not updating when a instance gets full or a game starts or ends"
         ]
+    },
+    "0.0.3": {
+        "title": "Cleaning up",
+        "feature_list": [
+            "Included alt username slot on env",
+            "Loosened supported room depencency",
+            "Cleaned up the main directory of the program"
+        ]
     }
 }

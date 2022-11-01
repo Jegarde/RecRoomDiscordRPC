@@ -5,28 +5,13 @@ from .github_links import GitHubLinks
 
 def load_supported_rooms() -> Optional[dict]:
     """
-    First try installing new supported rooms
-    if it fails, load local ones
+    Try installing new supported rooms
     """
     
     resp = httpx.get(GitHubLinks.SUPPORTED_ROOMS)
     if resp.status_code == 200:
-        with open("supported_rooms.json", "w") as cfg_json:
-            json.dump(resp.json(), cfg_json, indent=4)
-            
         supported_rooms = resp.json()
     else:
-        try:
-            with open("supported_rooms.json", "r") as supported_rooms_json:
-                supported_rooms = json.load(supported_rooms_json)
-        except FileNotFoundError:
-            resp = httpx.get(GitHubLinks.SUPPORTED_ROOMS)
-            if resp.status_code == 200:
-                with open("supported_rooms.json", "w") as cfg_json:
-                    json.dump(resp.json(), cfg_json, indent=4)
-                    
-                supported_rooms = resp.json()
-            else:
-                return None
+        supported_rooms = {}
 
     return supported_rooms

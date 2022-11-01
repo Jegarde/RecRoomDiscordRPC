@@ -62,9 +62,6 @@ class RecRoomRPC:
             return
         
         self.supported_rooms = load_supported_rooms()
-        if not self.supported_rooms:
-            print("Couldn't find platforms file and was unable to reinstall! Please reinstall.")
-            return
         
         # Initialize RecNetPy and check if specified account exists
         self.rec_net = recnetpy.Client()
@@ -74,7 +71,7 @@ class RecRoomRPC:
             await self.stop()
             return
         
-        self.debug_print("Found account...")
+        self.debug_print(f"Found account @{self.track_username}...")
         
         # Initialize RecNetLogin for authorized calls
         self.rec_login = RecNetLoginAsync(
@@ -100,6 +97,7 @@ class RecRoomRPC:
         while True:
             self.debug_print("Updating RPC...")
             await self.update()
+            self.debug_print(f"Updated, waiting {self.delay} seconds...")
             await asyncio.sleep(self.delay)
             
     async def stop(self) -> None:
@@ -197,7 +195,7 @@ class RecRoomRPC:
             "in_progress": "Game in progress"
         })
         
-        return (
+        presence = (
             PresenceReturnValue.OK,
             {
                 # Indicate whether or not the game has started or not
@@ -219,6 +217,10 @@ class RecRoomRPC:
                 "small_text": f"Playing on {platform['name']}"
             }
         )
+        
+        self.debug_print(f"{presence=}")
+        
+        return presence
         
         
     async def update(self) -> bool:

@@ -1,10 +1,12 @@
 import asyncio
-from utils import notify_latest_update, load_config
+from utils import notify_latest_update, load_config, download_env
 from dotenv import dotenv_values
 from client import RecRoomRPC
         
+VERSION = "0.0.3"
+        
 async def main():
-    version = notify_latest_update()
+    version = notify_latest_update(VERSION)
     
     print(f"Rec Room Discord RPC v{version} made by @Jegarde")
     
@@ -16,10 +18,15 @@ async def main():
         print("Configuration not found and I was unable to install a fresh one! Please reinstall.")
         return
     
-    # Load Rec Room account credentials
-    credentials = dotenv_values(".env")
-    username = credentials.get("USERNAME")
-    password = credentials.get("PASSWORD")
+    if download_env():
+        # Load Rec Room account credentials
+        credentials = dotenv_values(".env")
+        username = credentials.get("USERNAME")
+        password = credentials.get("PASSWORD")
+        alt_username = credentials.get("ALT_USERNAME", None)
+    else:
+        print("Couldn't download the .env file from GitHub, please reinstall.")
+        return
     
     # Make sure they're filled
     if not any([username, password]):
@@ -32,7 +39,7 @@ async def main():
         client_id=894603419531243590,
         debug=config.get("debug", False),
         delay=config.get("update_delay", 15),
-        track_username=config.get("alt_username", None)
+        track_username=alt_username
     )
     await RPC.start()
 
