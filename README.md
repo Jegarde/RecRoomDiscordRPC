@@ -23,18 +23,15 @@ As you can see, it's not limited to only PC. As long as the program is running o
 ![image](https://user-images.githubusercontent.com/13438202/199006465-13153f0f-ec77-4a50-9164-fd49d711497a.png)
 
 ## Usage
-Install the source code locally and install the dependencies via pip:
-`pip install -U -r requirements.txt`
+Install the latest release from https://github.com/Jegarde/RecRoomDiscordRPC/releases.
 
-Fill out your Rec Room account credentials in the provided `.env` file.
-This is to access necessary data to display the rich presence.
+You can either run it as a Python script or a Windows executable!
 
+There are instructions on the `README.txt` provided with the files.
 
 Although 2FA is supported, if you are not interested in inputting an authenticator code each time you run the program, feel free to fill in an alt account's credentials
-If you do decide to use an alt account, please input your alt account's username in the provided `config.json`'s `alt_username` slot.
 
-Make sure you have Discord running in the background and run the `main.py` script!
-`python main.py`
+If you do decide to use an alt account, please input your alt account's username in the provided .env's `ALT_USERNAME` slot.
 
 ## Contributing
 If you'd like, you can add yours or others rooms on the [supported room JSON](https://github.com/Jegarde/RecRoomDiscordRPC/blob/master/supported_rooms.json)!
