@@ -1,4 +1,3 @@
-import json
 import httpx
 from typing import Optional
 from .github_links import GitHubLinks
