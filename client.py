@@ -1,6 +1,5 @@
 import recnetpy
 import asyncio
-import json
 import nest_asyncio
 import time
 from enum import Enum
@@ -12,7 +11,7 @@ from recnetlogin.exceptions import InvalidAccountCredentials, Lockout
 from pypresence import Presence
 from pypresence.exceptions import DiscordNotFound
 from typing import Optional, Tuple
-from utils import img_url, room_url, profile_url, load_platforms, load_supported_rooms
+from utils import img_url, room_url, profile_url, load_platforms, load_supported_rooms, prompt_continue
 
 nest_asyncio.apply()
 
@@ -51,14 +50,14 @@ class RecRoomRPC:
         try:
             self.RPC = Presence(self.client_id)
         except DiscordNotFound:
-            print("Please have Discord running in the background!")
+            prompt_continue("Please have Discord running in the background and try again!", "close")
             return
         self.RPC.connect()
         
         # Load platforms and supported rooms
         self.platforms = load_platforms()
         if not self.platforms:
-            print("Couldn't find platforms file and was unable to reinstall! Please reinstall.")
+            prompt_continue("Couldn't find platforms file and was unable to reinstall! Please reinstall.", "close")
             return
         
         self.supported_rooms = load_supported_rooms()
@@ -67,7 +66,7 @@ class RecRoomRPC:
         self.rec_net = recnetpy.Client()
         self.account = await self.rec_net.accounts.get(self.track_username)
         if not self.account:
-            print(f"Account named @{self.track_username} doesn't exist!")
+            prompt_continue(f"Account named @{self.track_username} doesn't exist!", "close")
             await self.stop()
             return
         
@@ -82,11 +81,12 @@ class RecRoomRPC:
         try:
             await self.rec_login.get_token()
         except InvalidAccountCredentials:
-            print("Couldn't login, check your Rec Room account credentials in the configuration file!")
+            prompt_continue("Couldn't login, check your Rec Room account credentials in the configuration file!", "close")
+            #print("Couldn't login, check your Rec Room account credentials in the configuration file!")
             await self.stop()
             return
         except Lockout:
-            print("Couldn't login, Rec Room login attempts are being rate limited!")
+            prompt_continue("Couldn't login, Rec Room login attempts are being rate limited!", "close")
             await self.stop()
             return
         

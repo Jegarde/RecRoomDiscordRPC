@@ -17,5 +17,11 @@
             "Loosened supported room depencency",
             "Cleaned up the main directory of the program"
         ]
+    },
+    "0.0.4": {
+        "title": "Prompting",
+        "feature_list": [
+            "The script doesn't automatically close now whenever it runs to an issue."
+        ]
     }
 }
