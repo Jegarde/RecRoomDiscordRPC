@@ -4,7 +4,7 @@ from dotenv import dotenv_values
 from client import RecRoomRPC
 
         
-VERSION = "0.0.3"
+VERSION = "0.0.4"
         
 async def main():
     version = notify_latest_update(VERSION)
