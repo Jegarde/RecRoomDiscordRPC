@@ -114,5 +114,9 @@
     "^Park": {
         "pre_game": "Hanging out",
         "in_progress": "Hanging out"
+    },
+    "^Chillout.Hangout": {
+        "pre_game": "Hanging out and Having Fun!",
+        "in_progress": "Hanging out and Having Fun!"
     }
 }
